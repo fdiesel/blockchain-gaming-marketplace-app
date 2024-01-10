@@ -1,0 +1,21 @@
+{
+  "name": "Node.js",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/bgma",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "wix.glean",
+        "ms-azuretools.vscode-docker",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "Zignd.html-css-class-completion"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo chown node:node node_modules .next",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "remoteUser": "node"
+}
