@@ -2,8 +2,6 @@ version: '3.9'
 
 services:
   app:
-    container_name: app
-    image: bgma_devcontainer
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,19 +9,13 @@ services:
     environment:
       - WATCHPACK_POLLING=true
     volumes:
-      - ..:/workspaces/bgma
-      - node_modules:/workspaces/bgma/node_modules
-      - next:/workspaces/bgma/.next
+      - ..:/workspaces/app
+      - node_modules:/workspaces/app/node_modules
+      - next:/workspaces/app/.next
       - ~/.ssh:/home/node/.ssh
-    networks:
-      - dev_network
 
 volumes:
   node_modules:
     name: bgma_node_modules
   next:
     name: bgma_next
-
-networks:
-  dev_network:
-    name: bgma_dev_network

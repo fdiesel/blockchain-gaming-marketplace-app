@@ -1,8 +1,8 @@
 {
-  "name": "Node.js",
+  "name": "Next.js",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/bgma",
+  "workspaceFolder": "/workspaces/app",
   "customizations": {
     "vscode": {
       "extensions": [
