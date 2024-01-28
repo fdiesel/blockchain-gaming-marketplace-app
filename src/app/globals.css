@@ -1,7 +1,22 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
+html,
+body {
+  @apply h-full;
+}
 
 body {
-  background-color: white;
+  background: linear-gradient(
+    to right bottom,
+    #12c2e9 -20%,
+    #c471ed,
+    #f64f59 120%
+  );
 }
+
+main {
+  @apply max-w-screen-xl mx-auto p-4;
+}
+
+@tailwind utilities;

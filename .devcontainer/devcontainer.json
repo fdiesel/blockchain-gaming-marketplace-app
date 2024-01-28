@@ -17,5 +17,6 @@
   },
   "postCreateCommand": "sudo chown node:node node_modules .next",
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "forwardPorts": [8545]
 }
