@@ -29,11 +29,14 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const load = useCallback(async () => {
     try {
       // Check if MetaMask is available
+      // @ts-ignore
       if (typeof window.ethereum !== 'undefined') {
         // Request account access if needed
+        // @ts-ignore
         await window.ethereum.request({ method: 'eth_requestAccounts' });
 
         // Create a new Ethereum provider
+        // @ts-ignore
         const provider = new ethers.BrowserProvider(window.ethereum);
 
         // Get the user's address
