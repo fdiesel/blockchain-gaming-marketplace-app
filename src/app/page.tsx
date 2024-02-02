@@ -1,5 +1,9 @@
-import Wallet from '@/components/wallet';
+import Marketplaces from '@/components/Marketplaces';
 
 export default function Home() {
-  return <Wallet />;
+  return (
+    <div className="h-full overflow-y-auto">
+      <Marketplaces />
+    </div>
+  );
 }
