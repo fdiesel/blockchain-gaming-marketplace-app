@@ -1,4 +1,4 @@
-import { WalletProvider } from '@/hooks/wallet';
+import MetaMask from '@/hooks/MetaMask';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main>
-          <WalletProvider>{children}</WalletProvider>
+          <MetaMask>{children}</MetaMask>
         </main>
       </body>
     </html>
