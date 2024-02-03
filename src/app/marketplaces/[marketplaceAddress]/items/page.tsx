@@ -15,10 +15,13 @@ export default function Marketplace({
   const [items, setItems] = useState<ItemType[]>([]);
   useEffect(() => {
     const contract = getContract(marketplaceAddress);
-    contract.then((contract) => contract.getAllItems()).then(setItems);
+    contract.then((contract) => contract.getUnsoldItems()).then(setItems);
   }, [getContract, marketplaceAddress]);
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-3 pb-3">
+      <div className="md:col-span-4">
+        <h1>Items</h1>
+      </div>
       {items.map((item) => (
         <Link
           href={`/marketplaces/${marketplaceAddress}/items/${item.id}`}

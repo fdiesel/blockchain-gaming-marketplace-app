@@ -16,7 +16,7 @@ export default function Purchase({
   const { getContract } = useMarketplaceContract();
   function purchase() {
     getContract(marketplaceAddress).then((contract) => {
-      contract.purchaseItem(item.id);
+      contract.purchaseItem(item.id, item.price);
     });
   }
   return (

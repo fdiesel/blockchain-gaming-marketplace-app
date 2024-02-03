@@ -31,6 +31,15 @@ export function useMarketplaceFactoryContract() {
         return null;
       },
       [getContract]
+    ),
+    getMarketplacesWithBoughtItems: useCallback(
+      async (buyer: string): Promise<string[]> => {
+        const contract = await getContract();
+        const marketplacesObject =
+          await contract.getMarketplacesWithBoughtItems(buyer);
+        return Object.values(marketplacesObject);
+      },
+      [getContract]
     )
   };
 }

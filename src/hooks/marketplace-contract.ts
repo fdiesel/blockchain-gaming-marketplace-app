@@ -30,6 +30,10 @@ export class MarketplaceContract {
     };
   }
 
+  matchValid(item: Item): boolean {
+    return item.seller !== '0x0000000000000000000000000000000000000000';
+  }
+
   async get(): Promise<Marketplace> {
     const [name, imageSrc, isOpen, owner] = await Promise.all([
       this.contract.name(),
@@ -46,14 +50,30 @@ export class MarketplaceContract {
     };
   }
 
-  async getAllItems(): Promise<Item[]> {
-    const itemsObject: Result = await this.contract.getAllItems();
-    return Object.values(itemsObject).map(this.parseItem);
+  async getUnsoldItems(): Promise<Item[]> {
+    const itemsObject: Result = await this.contract.getUnsoldItems();
+    return Object.values(itemsObject)
+      .map(this.parseItem)
+      .filter(this.matchValid);
   }
 
   async getItemById(id: string): Promise<Item> {
     const itemObject: Result = await this.contract.getItemById(id);
     return this.parseItem(itemObject);
+  }
+
+  async getItemsByBuyer(buyer: string): Promise<Item[]> {
+    const itemsObject: Result = await this.contract.getItemsByBuyer(buyer);
+    return Object.values(itemsObject)
+      .map(this.parseItem)
+      .filter(this.matchValid);
+  }
+
+  async getItemsBySeller(seller: string): Promise<Item[]> {
+    const itemsObject: Result = await this.contract.getItemsBySeller(seller);
+    return Object.values(itemsObject)
+      .map(this.parseItem)
+      .filter(this.matchValid);
   }
 
   async addItem(
@@ -70,8 +90,9 @@ export class MarketplaceContract {
     );
   }
 
-  async purchaseItem(id: string) {
-    return this.contract.purchaseItem(id);
+  async purchaseItem(id: string, price: string) {
+    const options = { value: ethers.parseEther(price) };
+    return this.contract.purchaseItem(id, options);
   }
 }
 

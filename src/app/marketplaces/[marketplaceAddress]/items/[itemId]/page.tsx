@@ -20,6 +20,9 @@ export default function ItemPage({
   }, [getContract, marketplaceAddress, itemId]);
   return (
     <div className="px-3 pb-3 grid grid-cols-1 md:grid-cols-12 gap-3">
+      <div className="md:col-span-12">
+        <h1>Item</h1>
+      </div>
       {item && (
         <>
           <div className="md:col-span-8">

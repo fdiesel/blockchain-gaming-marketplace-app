@@ -29,6 +29,9 @@ export default function Manager() {
   }, [account, getMarketplaceByOwner]);
   return (
     <div className="flex flex-col gap-3 p-3">
+      <div>
+        <h1>Manager</h1>
+      </div>
       {marketplace && (
         <>
           <MarketplaceHeader marketplace={marketplace} />

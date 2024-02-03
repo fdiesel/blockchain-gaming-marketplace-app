@@ -22,6 +22,9 @@ export default function Marketplaces() {
   }, [getMarketplaces, getContract]);
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-3">
+      <div className="col-span-3">
+        <h1>Marketplaces</h1>
+      </div>
       {marketplaces.map((marketplace, i) => (
         <Link
           href={`/marketplaces/${marketplace.address}/items`}

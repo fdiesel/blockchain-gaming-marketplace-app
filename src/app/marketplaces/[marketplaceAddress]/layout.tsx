@@ -21,6 +21,7 @@ export default function MarketplaceLayout({
   return (
     <div>
       <div className="p-3">
+        <h1 className="mb-3">Marketplace</h1>
         {marketplace && <MarketplaceHeader marketplace={marketplace} />}
       </div>
       <div>{children}</div>

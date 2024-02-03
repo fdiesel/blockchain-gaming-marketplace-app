@@ -66,6 +66,26 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "buyer_",
+        "type": "address"
+      }
+    ],
+    "name": "getMarketplacesWithBoughtItems",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
         "internalType": "string",
         "name": "name_",
         "type": "string"
