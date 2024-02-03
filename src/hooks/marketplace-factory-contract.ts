@@ -21,6 +21,16 @@ export function useMarketplaceFactoryContract() {
       const contract = await getContract();
       const marketplacesObject = await contract.getMarketplaces();
       return Object.values(marketplacesObject);
-    }, [getContract])
+    }, [getContract]),
+    getMarketplaceByOwner: useCallback(
+      async (owner: string): Promise<string | null> => {
+        const contract = await getContract();
+        const marketplaceObject = await contract.getMarketplaceByOwner(owner);
+        if (marketplaceObject.hasOwnProperty('0'))
+          return marketplaceObject['0'];
+        return null;
+      },
+      [getContract]
+    )
   };
 }

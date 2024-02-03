@@ -2,6 +2,11 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "owner_",
+        "type": "address"
+      },
+      {
         "internalType": "string",
         "name": "name_",
         "type": "string"
@@ -52,6 +57,107 @@
     ],
     "name": "OwnableUnauthorizedAccount",
     "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
+    ],
+    "name": "ItemAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "ItemPurchased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      }
+    ],
+    "name": "ItemRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
+    ],
+    "name": "ItemUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "marketplace",
+        "type": "address"
+      }
+    ],
+    "name": "MarketplaceClosed",
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -136,14 +242,14 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "price",
         "type": "uint256"
-      },
-      {
-        "internalType": "bool",
-        "name": "sold",
-        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -211,6 +317,11 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "description_",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "price_",
         "type": "uint256"
@@ -266,6 +377,11 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "description_",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "price_",
         "type": "uint256"
@@ -308,14 +424,14 @@
             "type": "string"
           },
           {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
-          },
-          {
-            "internalType": "bool",
-            "name": "sold",
-            "type": "bool"
           }
         ],
         "internalType": "struct Marketplace.Item[]",
@@ -365,14 +481,14 @@
             "type": "string"
           },
           {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
-          },
-          {
-            "internalType": "bool",
-            "name": "sold",
-            "type": "bool"
           }
         ],
         "internalType": "struct Marketplace.Item",
@@ -392,7 +508,7 @@
         "type": "string"
       }
     ],
-    "name": "getItemByName",
+    "name": "getItemsByName",
     "outputs": [
       {
         "components": [
@@ -422,19 +538,19 @@
             "type": "string"
           },
           {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
             "internalType": "uint256",
             "name": "price",
             "type": "uint256"
-          },
-          {
-            "internalType": "bool",
-            "name": "sold",
-            "type": "bool"
           }
         ],
-        "internalType": "struct Marketplace.Item",
+        "internalType": "struct Marketplace.Item[]",
         "name": "",
-        "type": "tuple"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",

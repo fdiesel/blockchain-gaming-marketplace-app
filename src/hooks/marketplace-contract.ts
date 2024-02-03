@@ -1,8 +1,10 @@
-import { ethers } from 'ethers';
+import { Item } from '@/entities/item';
+import { Marketplace } from '@/entities/marketplace';
+import { Result, ethers } from 'ethers';
 import { useMetaMask } from 'metamask-react';
 import { useCallback } from 'react';
 
-class MarketplaceContract {
+export class MarketplaceContract {
   private contract: ethers.Contract;
 
   constructor(
@@ -16,7 +18,19 @@ class MarketplaceContract {
     );
   }
 
-  async get() {
+  parseItem(result: Result): Item {
+    return {
+      id: result['0'].toString(),
+      seller: result['1'],
+      soldTo: result['2'],
+      name: result['3'],
+      imageSrc: result['4'],
+      description: result['5'],
+      price: ethers.formatEther(result['6'])
+    };
+  }
+
+  async get(): Promise<Marketplace> {
     const [name, imageSrc, isOpen, owner] = await Promise.all([
       this.contract.name(),
       this.contract.imageSrc(),
@@ -25,15 +39,21 @@ class MarketplaceContract {
     ]);
     return {
       address: await this.contract.getAddress(),
+      owner,
       name,
       imageSrc,
-      isOpen,
-      owner
+      isOpen
     };
   }
 
-  async getAllItems() {
-    return this.contract.getAllItems();
+  async getAllItems(): Promise<Item[]> {
+    const itemsObject: Result = await this.contract.getAllItems();
+    return Object.values(itemsObject).map(this.parseItem);
+  }
+
+  async getItemById(id: string): Promise<Item> {
+    const itemObject: Result = await this.contract.getItemById(id);
+    return this.parseItem(itemObject);
   }
 
   async addItem(

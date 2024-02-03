@@ -19,13 +19,29 @@ export default function ItemAdder({ address }: { address: string }) {
   }
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={addItem}>
-      <h3>Add Item</h3>
+    <form
+      className="w-full max-w-sm bg-zinc-100/30 rounded-xl shadow-xl p-3 flex flex-col gap-3"
+      onSubmit={addItem}
+    >
       <input type="text" placeholder="Name" name="name" />
-      <input type="text" placeholder="Image Source" name="imageSrc" />
+      <input
+        type="text"
+        placeholder="Image Source"
+        name="imageSrc"
+        value="https://picsum.photos/200"
+        readOnly
+      />
       <input type="text" placeholder="Description" name="description" />
-      <input type="number" pattern="[0-9]+" placeholder="Pricce" name="price" />
-      <button type="submit">Add Item</button>
+      <input
+        type="number"
+        step="0.000000000000000001"
+        pattern="([0-9].,)+"
+        placeholder="Price"
+        name="price"
+      />
+      <button className="bg-black text-white" type="submit">
+        Add Item
+      </button>
     </form>
   );
 }
