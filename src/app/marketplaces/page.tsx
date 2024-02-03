@@ -4,6 +4,7 @@ import Marketplace from '@/components/Marketplace';
 import { Marketplace as MarketplaceType } from '@/entities/marketplace';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
 import { useMarketplaceFactoryContract } from '@/hooks/marketplace-factory-contract';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Marketplaces() {
@@ -22,7 +23,12 @@ export default function Marketplaces() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-3">
       {marketplaces.map((marketplace, i) => (
-        <Marketplace key={i} marketplace={marketplace} />
+        <Link
+          href={`/marketplaces/${marketplace.address}/items`}
+          key={marketplace.address}
+        >
+          <Marketplace marketplace={marketplace} />
+        </Link>
       ))}
     </div>
   );

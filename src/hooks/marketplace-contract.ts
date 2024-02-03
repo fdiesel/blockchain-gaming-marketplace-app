@@ -69,6 +69,10 @@ export class MarketplaceContract {
       ethers.parseEther(price.toString())
     );
   }
+
+  async purchaseItem(id: string) {
+    return this.contract.purchaseItem(id);
+  }
 }
 
 export function useMarketplaceContract() {

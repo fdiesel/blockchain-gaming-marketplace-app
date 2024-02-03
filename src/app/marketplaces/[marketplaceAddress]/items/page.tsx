@@ -3,6 +3,7 @@
 import Item from '@/components/Item';
 import { Item as ItemType } from '@/entities/item';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Marketplace({
@@ -19,7 +20,12 @@ export default function Marketplace({
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-3 pb-3">
       {items.map((item) => (
-        <Item key={item.id} item={item} />
+        <Link
+          href={`/marketplaces/${marketplaceAddress}/items/${item.id}`}
+          key={item.id}
+        >
+          <Item item={item} />
+        </Link>
       ))}
     </div>
   );
