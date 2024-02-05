@@ -36,7 +36,9 @@ export default function MePage() {
             )
           )
           .then((results) =>
-            results.map(([marketplace, items]) => ({ marketplace, items }))
+            results
+              .map(([marketplace, items]) => ({ marketplace, items }))
+              .filter(({ items }) => items.length > 0)
           )
           .then(setData);
       });
@@ -53,11 +55,9 @@ export default function MePage() {
           <div className="col-span-2 md:col-span-4">
             <MarketplaceHeader marketplace={marketplace} />
           </div>
-          <div>
-            {items.map((item) => (
-              <Item key={item.id} item={item} />
-            ))}
-          </div>
+          {items.map((item) => (
+            <Item key={item.id} item={item} />
+          ))}
         </Card>
       ))}
     </div>

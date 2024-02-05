@@ -25,25 +25,25 @@ export default function RootLayout({
             <div className="flex-1 min-h-0 overflow-y-auto">
               <div className="px-3 pt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
                 <Link
-                  className="block text-center px-3 py-2 bg-zinc-100 rounded-lg font-semibold"
+                  className="block text-center px-3 py-2 bg-zinc-100 text-gray-600 rounded-lg shadow-lg font-semibold"
                   href="/"
                 >
                   Home
                 </Link>
                 <Link
-                  className="block text-center px-3 py-2 bg-zinc-100 rounded-lg font-semibold"
+                  className="block text-center px-3 py-2 bg-zinc-100 text-gray-600 rounded-lg shadow-lg font-semibold"
                   href="/me"
                 >
                   Me
                 </Link>
                 <Link
-                  className="block text-center px-3 py-2 bg-zinc-100 rounded-lg font-semibold"
+                  className="block text-center px-3 py-2 bg-zinc-100 text-gray-600 rounded-lg shadow-lg font-semibold"
                   href="/marketplaces"
                 >
                   Marketplaces
                 </Link>
                 <Link
-                  className="block text-center px-3 py-2 bg-zinc-100 rounded-lg font-semibold"
+                  className="block text-center px-3 py-2 bg-zinc-100 text-gray-600 rounded-lg shadow-lg font-semibold"
                   href="/manager"
                 >
                   Manager
