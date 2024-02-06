@@ -1,6 +1,7 @@
 'use client';
 
 import { Item } from '@/entities/item';
+import { useCurrency } from '@/hooks/currency';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
 import { useMetaMask } from 'metamask-react';
 import Card from './Card';
@@ -14,6 +15,7 @@ export default function Purchase({
 }) {
   const { account } = useMetaMask();
   const { getContract } = useMarketplaceContract();
+  const [getValue, currency, setCurrency] = useCurrency();
   function purchase() {
     getContract(marketplaceAddress).then((contract) => {
       contract.purchaseItem(item.id, item.price);
@@ -31,7 +33,9 @@ export default function Purchase({
       </div>
       <div>
         <p className="text-xs">Price</p>
-        <p className="break-words">{item.price} ETH</p>
+        <p className="break-words">
+        {getValue(item.price)} <span className="font-thin">{currency}</span>
+        </p>
       </div>
       <button className="bg-black text-white" type="button" onClick={purchase}>
         Buy

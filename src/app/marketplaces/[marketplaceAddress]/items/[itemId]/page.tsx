@@ -1,6 +1,6 @@
 'use client';
 
-import Item from '@/components/Item';
+import ItemHeader from '@/components/ItemHeader';
 import Purchase from '@/components/Purchase';
 import { Item as ItemType } from '@/entities/item';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
@@ -26,7 +26,7 @@ export default function ItemPage({
       {item && (
         <>
           <div className="md:col-span-8">
-            <Item item={item} />
+            <ItemHeader item={item} />
           </div>
           <div className="md:col-span-4">
             <Purchase marketplaceAddress={marketplaceAddress} item={item} />

@@ -14,20 +14,16 @@ export default function MarketplaceHeader({
           alt={marketplace.name}
         />
       </div>
-      <div>
+      <div className="flex flex-col gap-1">
         <div className="text-2xl">{marketplace.name}</div>
-        <table>
-          <tbody>
-            <tr className="text-sm">
-              <td className="font-light">Address:</td>
-              <td className="font-mono">{marketplace.address}</td>
-            </tr>
-            <tr className="text-sm">
-              <td className="font-light">Owner:</td>
-              <td className="font-mono">{marketplace.owner}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <p className="text-xs">Address</p>
+          <p className="break-words">{marketplace.address}</p>
+        </div>
+        <div>
+          <p className="text-xs">Owner</p>
+          <p className="break-words">{marketplace.owner}</p>
+        </div>
       </div>
     </div>
   );

@@ -12,9 +12,9 @@ export default function ItemAdder({ address }: { address: string }) {
     const name = formData.get('name') as string;
     const imageSrc = formData.get('imageSrc') as string;
     const description = formData.get('description') as string;
-    const price = parseInt(formData.get('price') as string);
+    const priceInWei = parseFloat(formData.get('price') as string)* 10 ** 18;
     getContract(address).then((contract) =>
-      contract.addItem(name, imageSrc, description, price)
+      contract.addItem(name, imageSrc, description, priceInWei)
     );
   }
 
@@ -36,7 +36,7 @@ export default function ItemAdder({ address }: { address: string }) {
         type="number"
         step="0.000000000000000001"
         pattern="([0-9].,)+"
-        placeholder="Price"
+        placeholder="ETH"
         name="price"
       />
       <button className="bg-black text-white" type="submit">

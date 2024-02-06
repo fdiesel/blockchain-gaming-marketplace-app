@@ -26,7 +26,7 @@ export class MarketplaceContract {
       name: result['3'],
       imageSrc: result['4'],
       description: result['5'],
-      price: ethers.formatEther(result['6'])
+      price: result['6']
     };
   }
 
@@ -82,16 +82,11 @@ export class MarketplaceContract {
     description: string,
     price: number
   ) {
-    return this.contract.addItem(
-      name,
-      imageSrc,
-      description,
-      ethers.parseEther(price.toString())
-    );
+    return this.contract.addItem(name, imageSrc, description, price);
   }
 
   async purchaseItem(id: string, price: string) {
-    const options = { value: ethers.parseEther(price) };
+    const options = { value: price };
     return this.contract.purchaseItem(id, options);
   }
 }
