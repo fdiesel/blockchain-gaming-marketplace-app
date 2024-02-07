@@ -26,7 +26,7 @@ export default function Manager() {
         }
       });
     }
-  }, [account, getMarketplaceByOwner]);
+  }, [account, getMarketplaceByOwner, getContract]);
   return (
     <div className="flex flex-col gap-3 p-3">
       <div>

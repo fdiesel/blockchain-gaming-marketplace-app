@@ -24,11 +24,11 @@ export default function Purchase({
   return (
     <Card className="flex flex-col gap-3">
       <div>
-        <p className="text-xs">From</p>
+        <p className="text-xs">Item From</p>
         <p className="break-words">{item.seller.toLowerCase()}</p>
       </div>
       <div>
-        <p className="text-xs">To</p>
+        <p className="text-xs">Item To</p>
         <p className="break-words">{account}</p>
       </div>
       <div>
@@ -37,7 +37,11 @@ export default function Purchase({
           {getValue(item.price)} <span className="font-thin">{currency}</span>
         </p>
       </div>
-      <button className="form-control bg-black text-white" type="button" onClick={purchase}>
+      <button
+        className="form-control bg-black text-white"
+        type="button"
+        onClick={purchase}
+      >
         Buy
       </button>
     </Card>

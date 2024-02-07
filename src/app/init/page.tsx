@@ -1,48 +1,54 @@
 'use client';
 
+import Card from '@/components/Card';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
 import { useMarketplaceFactoryContract } from '@/hooks/marketplace-factory-contract';
-import { FormEvent } from 'react';
+import { ethers } from 'ethers';
 
 export default function Init() {
-  const { createMarketPlace } = useMarketplaceFactoryContract();
+  const { createMarketPlace, getMarketplaces } =
+    useMarketplaceFactoryContract();
   const { getContract } = useMarketplaceContract();
-  function init() {
-    createMarketPlace('some', 'link');
-    createMarketPlace('some', 'link');
+  function initMarketplaces() {
+    Promise.all([
+      createMarketPlace(
+        'Dota 2',
+        'https://upload.wikimedia.org/wikipedia/de/e/ef/Dota_2_logo.jpg'
+      )
+    ]);
   }
-
-  function addItem(event: FormEvent) {
-    event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const address = formData.get('address') as string;
-    const name = formData.get('name') as string;
-    const imageSrc = formData.get('imageSrc') as string;
-    const description = formData.get('description') as string;
-    const price = parseInt(formData.get('price') as string);
-    getContract(address).then((contract) =>
-      contract.addItem(name, imageSrc, description, price)
-    );
+  function initItems() {
+    getMarketplaces()
+      .then((addresses) => Promise.all(addresses.map(getContract)))
+      .then(([dota2]) =>
+        Promise.all([
+          dota2.addItem(
+            'Staff',
+            'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KW1Zwwo4NUX4oFJZEHLbXK9QlSPcU0qBhYQEnDVNu72MbXHFB1JgFoubyaKgJv3eCHfDxB6eO5kr-Kkvj6IPWFwmlUupxw3L-VoY6kigWx_EVtY2uictLAcgE8NFmE_VC4yO3u0cC7ot2Xnp3Azok9/160x160',
+            'Staff of the Master',
+            ethers.parseEther('1')
+          )
+        ])
+      );
   }
   return (
-    <div className="flex justify-center">
-      <button className="px-3 py-2 bg-red-500" type="button" onClick={init}>
-        Deploy Sample Data
-      </button>
-      <form className="flex flex-col gap-3" onSubmit={addItem}>
-        <h3>Add Item</h3>
-        <input type="text" placeholder="Address" name="address" />
-        <input type="text" placeholder="Name" name="name" />
-        <input type="text" placeholder="Image Source" name="imageSrc" />
-        <input type="text" placeholder="Description" name="description" />
-        <input
-          type="number"
-          pattern="[0-9]+"
-          placeholder="Pricce"
-          name="price"
-        />
-        <button type="submit">Add Item</button>
-      </form>
+    <div className="p-3">
+      <Card className="flex gap-3">
+        <button
+          className="form-control bg-black text-white"
+          type="button"
+          onClick={initMarketplaces}
+        >
+          Create Sample Marketplaces
+        </button>
+        <button
+          className="form-control bg-black text-white"
+          type="button"
+          onClick={initItems}
+        >
+          Create Sample Items
+        </button>
+      </Card>
     </div>
   );
 }
