@@ -29,13 +29,17 @@ export default function Marketplaces() {
       </div>
       <div className="col-span-3">
         <SearchInput
-          placeholder="Name"
+          placeholder="Name / Address"
           onChange={setQuery}
           onClear={setQuery}
         />
       </div>
       {marketplaces
-        .filter((m) => m.name.toLowerCase().includes(query.toLowerCase()))
+        .filter(
+          (m) =>
+            m.name.toLowerCase().includes(query.toLowerCase()) ||
+            m.address.toLowerCase().includes(query.toLowerCase())
+        )
         .map((marketplace, i) => (
           <Link
             href={`/marketplaces/${marketplace.address}/items`}
