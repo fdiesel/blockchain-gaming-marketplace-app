@@ -5,5 +5,5 @@ export type Item = {
   name: string;
   imageSrc: string;
   description: string;
-  price: string;
+  price: bigint;
 };

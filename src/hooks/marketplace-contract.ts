@@ -80,12 +80,12 @@ export class MarketplaceContract {
     name: string,
     imageSrc: string,
     description: string,
-    price: number
+    price: bigint
   ) {
     return this.contract.addItem(name, imageSrc, description, price);
   }
 
-  async purchaseItem(id: string, price: string) {
+  async purchaseItem(id: string, price: bigint) {
     const options = { value: price };
     return this.contract.purchaseItem(id, options);
   }

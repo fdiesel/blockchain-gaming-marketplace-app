@@ -26,7 +26,7 @@ function createCtx<ContextType>() {
 const [useCtx, CtxProvider] =
   createCtx<
     readonly [
-      (wei: string) => string,
+      (wei: bigint) => string,
       Currency,
       React.Dispatch<React.SetStateAction<Currency>>
     ]
@@ -40,7 +40,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [currency, setCurrency] = useState<Currency>(Currency.ETHER);
 
   const getValue = useCallback(
-    (wei: string): string => ethers.formatUnits(wei, currency),
+    (wei: bigint): string => ethers.formatUnits(wei, currency),
     [currency]
   );
 

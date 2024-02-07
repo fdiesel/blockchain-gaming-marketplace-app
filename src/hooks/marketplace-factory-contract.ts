@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 
 export function useMarketplaceFactoryContract() {
   const { getContract } = useCustomContract(
-    process.env.NEXT_PUBLIC_CONTRACT_MARKETPLACE_FACTORY_ADDRESS!,
+    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
     require('@/abis/marketplace-factory.json')
   );
 

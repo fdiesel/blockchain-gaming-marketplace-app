@@ -1,6 +1,7 @@
 'use client';
 
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
+import { ethers } from 'ethers';
 import { FormEvent } from 'react';
 
 export default function ItemAdder({ address }: { address: string }) {
@@ -12,7 +13,7 @@ export default function ItemAdder({ address }: { address: string }) {
     const name = formData.get('name') as string;
     const imageSrc = formData.get('imageSrc') as string;
     const description = formData.get('description') as string;
-    const priceInWei = parseFloat(formData.get('price') as string)* 10 ** 18;
+    const priceInWei = ethers.parseEther(formData.get('price') as string);
     getContract(address).then((contract) =>
       contract.addItem(name, imageSrc, description, priceInWei)
     );

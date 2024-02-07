@@ -15,7 +15,7 @@ export default function Purchase({
 }) {
   const { account } = useMetaMask();
   const { getContract } = useMarketplaceContract();
-  const [getValue, currency, setCurrency] = useCurrency();
+  const [getValue, currency] = useCurrency();
   function purchase() {
     getContract(marketplaceAddress).then((contract) => {
       contract.purchaseItem(item.id, item.price);
@@ -34,7 +34,7 @@ export default function Purchase({
       <div>
         <p className="text-xs">Price</p>
         <p className="break-words">
-        {getValue(item.price)} <span className="font-thin">{currency}</span>
+          {getValue(item.price)} <span className="font-thin">{currency}</span>
         </p>
       </div>
       <button className="bg-black text-white" type="button" onClick={purchase}>
