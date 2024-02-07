@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 
+@import 'bootstrap-icons/font/bootstrap-icons';
+
 html,
 body {
   @apply h-full;
@@ -19,13 +21,8 @@ main {
   @apply overflow-hidden;
 }
 
-input[type='text'],
-input[type='number'] {
-  @apply px-3 py-2 rounded-md;
-}
-
-button {
-  @apply px-3 py-2 rounded-md;
+.form-control {
+  @apply block px-3 py-2 rounded-md;
 }
 
 h1 {

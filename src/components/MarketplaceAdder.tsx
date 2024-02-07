@@ -23,15 +23,21 @@ export default function MarketplaceAdder() {
       className="w-full max-w-sm bg-zinc-100/30 rounded-xl shadow-xl p-3 flex flex-col gap-3"
       onSubmit={addMarketplace}
     >
-      <input type="text" placeholder="Name" name="name" />
       <input
+        className="form-control"
+        type="text"
+        placeholder="Name"
+        name="name"
+      />
+      <input
+        className="form-control"
         type="text"
         placeholder="Image Source"
         name="imageSrc"
         value="https://picsum.photos/200"
         readOnly
       />
-      <button className="bg-black text-white" type="submit">
+      <button className="form-control bg-black text-white" type="submit">
         Create Marketplace
       </button>
     </form>

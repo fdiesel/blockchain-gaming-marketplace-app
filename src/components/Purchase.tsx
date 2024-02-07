@@ -37,7 +37,7 @@ export default function Purchase({
           {getValue(item.price)} <span className="font-thin">{currency}</span>
         </p>
       </div>
-      <button className="bg-black text-white" type="button" onClick={purchase}>
+      <button className="form-control bg-black text-white" type="button" onClick={purchase}>
         Buy
       </button>
     </Card>

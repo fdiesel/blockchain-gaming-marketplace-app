@@ -1,6 +1,7 @@
 'use client';
 
 import Marketplace from '@/components/Marketplace';
+import SearchInput from '@/components/SearchInput';
 import { Marketplace as MarketplaceType } from '@/entities/marketplace';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
 import { useMarketplaceFactoryContract } from '@/hooks/marketplace-factory-contract';
@@ -11,6 +12,7 @@ export default function Marketplaces() {
   const { getMarketplaces } = useMarketplaceFactoryContract();
   const { getContract } = useMarketplaceContract();
   const [marketplaces, setMarketplaces] = useState<MarketplaceType[]>([]);
+  const [query, setQuery] = useState('');
   useEffect(() => {
     getMarketplaces().then((marketplaces) => {
       Promise.all(marketplaces.map((address) => getContract(address)))
@@ -25,14 +27,23 @@ export default function Marketplaces() {
       <div className="col-span-3">
         <h1>Marketplaces</h1>
       </div>
-      {marketplaces.map((marketplace, i) => (
-        <Link
-          href={`/marketplaces/${marketplace.address}/items`}
-          key={marketplace.address}
-        >
-          <Marketplace marketplace={marketplace} />
-        </Link>
-      ))}
+      <div className="col-span-3">
+        <SearchInput
+          placeholder="Name"
+          onChange={setQuery}
+          onClear={setQuery}
+        />
+      </div>
+      {marketplaces
+        .filter((m) => m.name.toLowerCase().includes(query.toLowerCase()))
+        .map((marketplace, i) => (
+          <Link
+            href={`/marketplaces/${marketplace.address}/items`}
+            key={marketplace.address}
+          >
+            <Marketplace marketplace={marketplace} />
+          </Link>
+        ))}
     </div>
   );
 }

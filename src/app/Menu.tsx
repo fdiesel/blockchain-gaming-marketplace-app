@@ -15,7 +15,7 @@ function NavItem({
 }) {
   return (
     <Link
-      className={`block text-center px-3 py-2 bg-zinc-100 text-gray-600 rounded-lg shadow-lg font-semibold ${className}`}
+      className={`form-control text-center bg-zinc-100 text-gray-600 shadow-lg font-semibold ${className}`}
       href={href}
     >
       {children}
@@ -30,7 +30,7 @@ export default function Menu() {
     <nav className="grid grid-cols-6 gap-3">
       <div className="col-span-4">
         <button
-          className="w-full bg-gradient-to-br from-slate-300 via-zinc-50 to-slate-300"
+          className="form-control w-full bg-gradient-to-br from-slate-300 via-zinc-50 to-slate-300"
           type="button"
           onClick={connect}
           disabled={status === 'connected'}
@@ -40,7 +40,7 @@ export default function Menu() {
       </div>
       <div className="col-span-2">
         <select
-          className="w-full px-3 py-2 rounded-lg shadow-lg bg-zinc-100 text-gray-600"
+          className="form-control w-full bg-zinc-100 text-gray-600"
           value={currency}
           onChange={(event) => setCurrency(event.target.value as Currency)}
         >

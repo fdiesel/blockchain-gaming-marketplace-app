@@ -34,7 +34,7 @@ export default function Wallet() {
       {status === 'notConnected' && (
         <div className="h-full flex justify-center items-center">
           <button
-            className="px-3 py-2 bg-zinc-300 rounded-full"
+            className="form-control bg-zinc-300 rounded-full"
             type="button"
             onClick={connect}
           >
