@@ -25,6 +25,14 @@ main {
   @apply block px-3 py-2 rounded-md;
 }
 
+.btn {
+  @apply bg-black text-white;
+}
+
+.btn:disabled {
+  @apply bg-gray-700 text-gray-500;
+}
+
 h1 {
   @apply text-white text-4xl font-thin;
 }

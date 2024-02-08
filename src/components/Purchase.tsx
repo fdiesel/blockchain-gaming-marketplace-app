@@ -4,6 +4,7 @@ import { Item } from '@/entities/item';
 import { useCurrency } from '@/hooks/currency';
 import { useMarketplaceContract } from '@/hooks/marketplace-contract';
 import { useMetaMask } from 'metamask-react';
+import { useState } from 'react';
 import Card from './Card';
 
 export default function Purchase({
@@ -16,9 +17,13 @@ export default function Purchase({
   const { account } = useMetaMask();
   const { getContract } = useMarketplaceContract();
   const [getValue, currency] = useCurrency();
+  const [msg, setMsg] = useState<string>();
   function purchase() {
     getContract(marketplaceAddress).then((contract) => {
-      contract.purchaseItem(item.id, item.price);
+      contract
+        .purchaseItem(item.id, item.price)
+        .then(() => setMsg('Purchased'))
+        .catch(() => setMsg('Purchase Rejected'));
     });
   }
   return (
@@ -38,11 +43,12 @@ export default function Purchase({
         </p>
       </div>
       <button
-        className="form-control bg-black text-white"
+        className="form-control btn"
         type="button"
         onClick={purchase}
+        disabled={!!msg}
       >
-        Buy
+        {msg ?? 'Buy'}
       </button>
     </Card>
   );

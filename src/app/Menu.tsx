@@ -30,7 +30,7 @@ export default function Menu() {
     <nav className="grid grid-cols-6 gap-3">
       <div className="col-span-4">
         <button
-          className="form-control w-full bg-gradient-to-br from-slate-300 via-zinc-50 to-slate-300"
+          className="form-control w-full btn"
           type="button"
           onClick={connect}
           disabled={status === 'connected'}
