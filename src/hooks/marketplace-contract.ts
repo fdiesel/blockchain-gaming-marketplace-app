@@ -39,7 +39,7 @@ export class MarketplaceContract {
       this.contract.name(),
       this.contract.imageSrc(),
       this.contract.isOpen(),
-      this.contract.owner()
+      this.contract.getOwner()
     ]);
     return {
       address: await this.contract.getAddress(),
@@ -51,10 +51,13 @@ export class MarketplaceContract {
   }
 
   async getUnsoldItems(): Promise<Item[]> {
-    const itemsObject: Result = await this.contract.getUnsoldItems();
+    const itemsObject: Result = await this.contract.getAllItems();
     return Object.values(itemsObject)
       .map(this.parseItem)
-      .filter(this.matchValid);
+      .filter(this.matchValid)
+      .filter(
+        (item) => item.soldTo === '0x0000000000000000000000000000000000000000'
+      );
   }
 
   async getItemById(id: string): Promise<Item> {
@@ -88,6 +91,10 @@ export class MarketplaceContract {
   async purchaseItem(id: string, price: bigint) {
     const options = { value: price };
     return this.contract.purchaseItem(id, options);
+  }
+
+  async addAuthorisedAddress(address: string) {
+    return this.contract.addAuthorisedAddresses([ethers.getAddress(address)]);
   }
 }
 

@@ -1,5 +1,6 @@
 'use client';
 
+import AddressAdder from '@/components/AddressAdder';
 import ItemAdder from '@/components/ItemAdder';
 import MarketplaceAdder from '@/components/MarketplaceAdder';
 import MarketplaceHeader from '@/components/MarketplaceHeader';
@@ -36,6 +37,7 @@ export default function Manager() {
         <>
           <MarketplaceHeader marketplace={marketplace} />
           <ItemAdder address={marketplace.address} />
+          <AddressAdder address={marketplace.address} />
         </>
       )}
       {marketplace === null && <MarketplaceAdder />}

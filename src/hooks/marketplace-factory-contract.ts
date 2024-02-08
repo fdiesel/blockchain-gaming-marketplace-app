@@ -25,7 +25,7 @@ export function useMarketplaceFactoryContract() {
     getMarketplaceByOwner: useCallback(
       async (owner: string): Promise<string | null> => {
         const contract = await getContract();
-        const marketplaceObject = await contract.getMarketplaceByOwner(owner);
+        const marketplaceObject = await contract.getMarketplacesByOwner(owner);
         if (marketplaceObject.hasOwnProperty('0'))
           return marketplaceObject['0'];
         return null;
